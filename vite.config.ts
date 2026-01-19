@@ -46,6 +46,9 @@ export default defineConfig({
     }
   },
   test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./lib/HeroBanner/test-setup.ts'],
     projects: [{
       extends: true,
       plugins: [
