@@ -1,33 +1,74 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { resolve } from 'node:path'
-import tsconfigPaths from 'vite-tsconfig-paths'
-
+/// <reference types="vitest/config" />
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { resolve } from 'node:path';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import dts from 'vite-plugin-dts';
 
 // https://vite.dev/config/
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import { playwright } from '@vitest/browser-playwright';
+const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+
+// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  plugins: [react(), tsconfigPaths()],
+  plugins: [
+    react(),
+    tsconfigPaths(),
+    dts({
+      rollupTypes: true,
+      tsconfigPath: path.resolve(__dirname, 'tsconfig.app.json'),
+    })],
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/main.ts'),
       name: 'clouda-vtex-ui',
       // the proper extensions will be added
-      fileName: 'clouda-vtex-ui',
+      fileName: 'clouda-vtex-ui'
     },
+    cssCodeSplit: true,
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      external: ['vue', 'react', 'react-dom', 'react/jsx-runtime'],
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
-          vue: 'Vue',
           react: 'React',
           'react-dom': 'ReactDOM',
-          'react/jsx-runtime': 'react/jsx-runtime',
+          'react/jsx-runtime': 'react/jsx-runtime'
         },
-      },
-    },
+        assetFileNames: "style.css",
+      }
+    }
   },
-})
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./lib/HeroBanner/test-setup.ts'],
+    projects: [{
+      extends: true,
+      plugins: [
+        // The plugin will run tests for the stories defined in your Storybook config
+        // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
+        storybookTest({
+          configDir: path.join(dirname, '.storybook')
+        })],
+      test: {
+        name: 'storybook',
+        browser: {
+          enabled: true,
+          headless: true,
+          provider: playwright({}),
+          instances: [{
+            browser: 'chromium'
+          }]
+        },
+        setupFiles: ['.storybook/vitest.setup.ts']
+      }
+    }]
+  }
+});
