@@ -112,7 +112,7 @@ describe('HeroBanner', () => {
       );
       
       const button = screen.getByRole('button', { name: 'Hover Me' });
-      const initialBgColor = button.style.backgroundColor;
+      // const initialBgColor = button.style.backgroundColor;
       
       await user.hover(button);
       expect(button.style.backgroundColor).toBe('rgb(61, 69, 82)'); // #3d4552
