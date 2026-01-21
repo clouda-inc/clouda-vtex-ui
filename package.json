@@ -31,6 +31,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.562.0",
+    "tailwind-merge": "^3.4.0",
     "vite-tsconfig-paths": "^6.0.4"
   },
   "devDependencies": {
