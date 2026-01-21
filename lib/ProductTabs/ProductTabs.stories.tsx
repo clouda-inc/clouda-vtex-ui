@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Specification, { type SpecificationData } from './Specification';
+import ProductTabs, { type ProductTabsData } from './ProductTabs';
 
-const mockSpecificationData: SpecificationData = {
+const mockProductTabsData: ProductTabsData = {
   overview: `
     <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. It contains:</p>
     <ul class="mb-4">
@@ -28,20 +28,20 @@ const mockSpecificationData: SpecificationData = {
 };
 
 const meta = {
-  title: 'Components/Specification',
-  component: Specification,
+  title: 'Layouts/ProductTabs',
+  component: ProductTabs,
   parameters: {
     layout: 'padded',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof Specification>;
+} satisfies Meta<typeof ProductTabs>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    data: mockSpecificationData
+    data: mockProductTabsData
   },
 };
 
@@ -69,7 +69,7 @@ export const Tablet: Story = {
     },
   },
   args: {
-    data: mockSpecificationData,
+    data: mockProductTabsData,
   },
 };
 
@@ -80,6 +80,6 @@ export const Mobile: Story = {
     },
   },
   args: {
-    data: mockSpecificationData,
+    data: mockProductTabsData,
   },
 };

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '../Tabs';
 
-export interface SpecificationData {
+export interface ProductTabsData {
   overview: string; // HTML content
   
   // Specifications Tab
@@ -12,11 +12,11 @@ export interface SpecificationData {
   downloads: { name: string; image: string; url: string }[];
 }
 
-export interface SpecificationProps {
-  data?: SpecificationData;
+export interface ProductTabsProps {
+  data?: ProductTabsData;
 }
 
-const Specification = ({ data }: SpecificationProps) => {
+const ProductTabs = ({ data }: ProductTabsProps) => {
   const [openSection, setOpenSection] = useState<string | null>('overview');
 
   if (!data) {
@@ -169,4 +169,4 @@ const Specification = ({ data }: SpecificationProps) => {
   );
 };
 
-export default Specification;
+export default ProductTabs;
