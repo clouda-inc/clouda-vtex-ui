@@ -20,6 +20,8 @@ interface ColorSelectorProps {
   onChange: (value: string) => void;
   className?: string;
   placeholder?: string;
+  disabled?: boolean;
+  width?: string | number;
 }
 
 const ColorSelector: React.FC<ColorSelectorProps> = ({
@@ -27,12 +29,20 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({
   selectedValue,
   onChange,
   className = '',
-  placeholder = 'Select Color'
+  placeholder = 'Select Color',
+  disabled = false,
+  width = 'w-full max-w-[200px]'
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const selectedOption = options.find(opt => opt.value === selectedValue);
+
+  const isTailwindClass = typeof width === 'string' && width.startsWith('w-');
+  const containerStyle = !isTailwindClass 
+    ? { width: typeof width === 'number' ? `${width}px` : width } 
+    : {};
+  const widthClass = isTailwindClass ? width : '';
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -46,10 +56,21 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({
   }, []);
 
   return (
-    <div className={`relative w-full max-w-[200px] ${className}`} ref={containerRef}>
+    <div 
+      className={`relative ${widthClass} ${className}`} 
+      ref={containerRef}
+      style={({ ...containerStyle }) as React.CSSProperties}
+    >
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full h-[40px] px-3 bg-white border border-gray-300 rounded flex items-center justify-between hover:border-gray-400 focus:outline-none"
+        type="button"
+        onClick={() => !disabled && setIsOpen(!isOpen)}
+        disabled={disabled}
+        className={`
+          flex items-center justify-between w-full h-[40px] px-3 bg-white border rounded 
+          ${disabled ? 'border-gray-100 bg-gray-50 cursor-not-allowed' : 'border-gray-200 cursor-pointer hover:border-gray-300'}
+          ${isOpen ? 'border-blue-500 ring-1 ring-blue-500' : ''}
+          transition-all duration-200
+        `}
       >
          <div className="flex items-center gap-2">
             {selectedOption?.colorCode && (

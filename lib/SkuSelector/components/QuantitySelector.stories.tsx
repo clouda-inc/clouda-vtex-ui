@@ -28,3 +28,12 @@ export const Default: Story = {
     max: 10,
   }
 };
+
+export const BulkOrder: Story = {
+  render: (args) => <QuantitySelectorWrapper {...args} />,
+  args: {
+    quantity: 10,
+    min: 10,
+    max: 50,
+  }
+};

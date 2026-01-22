@@ -128,3 +128,20 @@ export const Loading: Story = {
     quantity: 1,
   }
 };
+
+export const SimpleVariant: Story = {
+  render: (args) => <SkuSelectorWrapper {...args} />,
+  args: {
+    variations: [
+      {
+        name: 'Color',
+        type: 'color',
+        options: [
+          { label: 'Black', value: 'black', meta: '#000000' },
+          { label: 'White', value: 'white', meta: '#FFFFFF' },
+        ]
+      }
+    ],
+    partNumber: 'SIMPLE-001',
+  }
+};

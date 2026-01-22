@@ -30,3 +30,16 @@ export const Default: Story = {
     selectedValue: '1',
   }
 };
+
+export const SizeOptions: Story = {
+  render: (args) => <TextSelectorWrapper {...args} />,
+  args: {
+    options: [
+      { label: 'Small', value: 'S' },
+      { label: 'Medium', value: 'M' },
+      { label: 'Large', value: 'L' },
+      { label: 'X-Large', value: 'XL', disabled: true },
+    ],
+    selectedValue: 'M',
+  }
+};

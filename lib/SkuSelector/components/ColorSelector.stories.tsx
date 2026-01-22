@@ -27,7 +27,25 @@ export const Default: Story = {
       { label: 'Green', value: 'green', colorCode: '#00FF00' },
       { label: 'Blue', value: 'blue', colorCode: '#0000FF' },
     ],
+
     selectedValue: 'red',
     placeholder: 'Select a color',
+    width: 200
+  }
+};
+
+export const MaterialFinishes: Story = {
+  render: (args) => <ColorSelectorWrapper {...args} />,
+  args: {
+    options: [
+      { label: 'Oak', value: 'oak', colorCode: '#C9A66B' },
+      { label: 'Walnut', value: 'walnut', colorCode: '#5D4037' },
+      { label: 'Cherry', value: 'cherry', colorCode: '#933D41' },
+      { label: 'White Ash', value: 'white-ash', colorCode: '#EAE0C8' },
+    ],
+
+    selectedValue: 'oak',
+    placeholder: 'Select Finish',
+    width: 150
   }
 };

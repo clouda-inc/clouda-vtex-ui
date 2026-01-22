@@ -25,3 +25,17 @@ export const Default: Story = {
     onButtonClick: () => alert('Button Clicked'),
   }
 };
+
+export const PromoBanner: Story = {
+  args: {
+    text: 'Limited time offer: Get 20% off fast shipping!',
+    buttonText: 'Claim Offer',
+    className: 'bg-red-50 p-4 rounded-lg',
+    buttonProps: {
+      variant: 'primary',
+      className: 'bg-red-600 hover:bg-red-700 text-white border-none',
+      size: 'sm'
+    },
+    onButtonClick: () => alert('Offer Claimed'),
+  }
+};
