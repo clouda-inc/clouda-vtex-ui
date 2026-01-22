@@ -14,11 +14,26 @@ export interface ProductInfoProps {
    * Callback when "Read More" is clicked.
    */
   onReadMore?: () => void;
+  /**
+   * Text alignment for the component.
+   */
+  alignment?: 'left' | 'center' | 'right';
 }
 
-export const ProductInfo: React.FC<ProductInfoProps> = ({ title, description, onReadMore }) => {
+export const ProductInfo: React.FC<ProductInfoProps> = ({ 
+  title, 
+  description, 
+  onReadMore,
+  alignment = 'left' 
+}) => {
+  const alignmentClass = {
+    left: 'text-left items-start',
+    center: 'text-center items-center',
+    right: 'text-right items-end',
+  }[alignment];
+
   return (
-    <div className="flex flex-col gap-2">
+    <div className={`flex flex-col gap-2 ${alignmentClass}`}>
       <h1 className="font-['Proxima_Nova'] font-extrabold text-[42px] leading-[50px] text-black">
         {title}
       </h1>

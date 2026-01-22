@@ -12,4 +12,6 @@ export { default as SubHeader } from './SubHeader/SubHeader';
 export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
 export { ProductImageGallery } from './ProductImageGallery/ProductImageGallery';
 export { ProductInfo } from './ProductInfo/ProductInfo';
+export { ProductCard } from './ProductCard/ProductCard';
+export { RelatedProducts } from './RelatedProducts/RelatedProducts';
 
