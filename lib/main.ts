@@ -14,4 +14,6 @@ export { ProductImageGallery } from './ProductImageGallery/ProductImageGallery';
 export { ProductInfo } from './ProductInfo/ProductInfo';
 export { ProductCard } from './ProductCard/ProductCard';
 export { RelatedProducts } from './RelatedProducts/RelatedProducts';
-
+export * from './SkuSelector/SkuSelector';
+export * from './ProductActions/ProductActions';
+export * from './ButtonWithText/ButtonWithText';
