@@ -52,7 +52,16 @@ export interface ProductCardProps {
   /**
    * Description text or HTML content (Summary variant only).
    */
+  /**
+   * Description text (Summary variant only). 
+   * Rendered before the "read more" link.
+   */
   description?: string;
+  /**
+   * List of features to display as bullet points (Summary variant only).
+   * Rendered after the "read more" link.
+   */
+  features?: string[];
   /**
    * Callback for "read more" link (Summary variant only).
    */
@@ -81,6 +90,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   imageClassName = '',
   buttonClassName = '',
   description,
+  features,
   onReadMore,
   onQuantityChange,
   onGetQuote,
@@ -113,25 +123,32 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </h3>
 
           {/* Description - Left Aligned */}
-          {description && (
-            <div className="text-[12px] text-left w-full text-black font-['DM_Sans'] [&_ul]:list-disc [&_ul]:pl-5 [&_li]:leading-[16px]">
-              <span 
-                className="leading-[16px]"
-                dangerouslySetInnerHTML={{ __html: description }}
-              />
+          {/* Description + Read More */}
+          {(description || onReadMore) && (
+             <div className="text-[12px] text-left w-full text-black font-['DM_Sans'] leading-[16px]">
+               {description && <span>{description}</span>}
                {' '}
-              {onReadMore && (
-                <button 
-                  onClick={(e) => {
-                    e.preventDefault(); // Prevent link click if wrapped
-                    onReadMore();
-                  }}
-                  className="text-[#4e46b4] underline decoration-solid cursor-pointer font-['DM_Sans'] text-[12px] leading-[16px]"
-                >
-                  read more
-                </button>
-              )}
-            </div>
+               {onReadMore && (
+                 <button 
+                   onClick={(e) => {
+                     e.preventDefault(); // Prevent link click if wrapped
+                     onReadMore();
+                   }}
+                   className="text-[#4e46b4] underline decoration-solid cursor-pointer font-['DM_Sans'] text-[12px] leading-[16px]"
+                 >
+                   read more
+                 </button>
+               )}
+             </div>
+          )}
+
+          {/* Features List */}
+          {features && features.length > 0 && (
+            <ul className="list-disc pl-5 text-[12px] text-left w-full text-black font-['DM_Sans'] leading-[16px]">
+              {features.map((feature, idx) => (
+                <li key={idx}>{feature}</li>
+              ))}
+            </ul>
           )}
         </div>
       </Wrapper>

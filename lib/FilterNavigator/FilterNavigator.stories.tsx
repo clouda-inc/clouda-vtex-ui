@@ -66,7 +66,6 @@ export const Default: Story = {
               ),
             };
           } else if (section.type === "range") {
-            // For range, value is [min, max]
             return { ...section, rangeValue: value };
           }
           return section;
@@ -92,7 +91,7 @@ export const Default: Story = {
           sections={sections}
           onFilterChange={handleFilterChange}
           onClearAll={handleClearAll}
-          className={`w-[297px] ${args.className || ""}`}
+          className={`w-full lg:w-[297px] ${args.className || ""}`}
         />
       </div>
     );
@@ -107,7 +106,7 @@ export const MobileView: Story = {
       const [sections] = useState(mockSections);
       
       return (
-         <div className="w-[375px] h-[800px] border border-gray-300 relative bg-white">
+         <div className="w-full min-h-[800px] border border-gray-300 relative bg-white">
             <FilterNavigator
                 {...args}
                 sections={sections}
@@ -122,7 +121,7 @@ export const MobileView: Story = {
   },
   parameters: {
       viewport: {
-          defaultViewport: 'mobile1'
+          defaultViewport: 'responsive'
       }
   },
   args: {
