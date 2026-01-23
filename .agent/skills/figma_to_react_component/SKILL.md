@@ -40,7 +40,7 @@ This skill encapsulates the process of transforming a Figma design selection int
     - Update `lib/main.ts` (or the library entry point) to export the new component.
 
 ## 4. Verification & Refinement
-- **Action**: Run `npm run storybook`.
+- **Note**: Storybook will be running.
 - **Action**: Use `browser_subagent` to navigate to the story.
     - **Task**: "Navigate to the story, wait for render, and take a screenshot."
 - **Comparison**:
