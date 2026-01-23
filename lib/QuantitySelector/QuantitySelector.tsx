@@ -34,6 +34,10 @@ export interface QuantitySelectorProps {
    * Disable the interaction
    */
   disabled?: boolean;
+  /**
+   * Custom color for the buttons
+   */
+  customColor?: string;
 }
 
 export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
@@ -45,6 +49,7 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   label = "Lorem ipsum",
   blockClass = "",
   disabled = false,
+  customColor,
 }) => {
   const isControlled = controlledValue !== undefined;
   const [internalValue, setInternalValue] = useState(initialValue);
@@ -111,13 +116,7 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       setInternalValue(parsed);
       setInputValue(String(parsed));
     } else {
-      // If controlled, we just notify the parent of the clamped value
-      // The parent usually passes it back. If they don't, we might have a mismatch 
-      // until the next effect, but effectively we want to force the display to reset if the parent rejects it? 
-      // Standard pattern: fire change, let parent drive. 
-      // But for blur UX, we usually want to show the clamped value immediately if local.
       onChange?.(parsed);
-      // If parent doesn't update, useEffect will revert inputValue to controlledValue
     }
   };
 
@@ -127,6 +126,8 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
       (e.target as HTMLInputElement).blur();
     }
   };
+  
+  const buttonStyle: React.CSSProperties = customColor ? { backgroundColor: customColor } : {};
 
   return (
     <div className={`flex items-center gap-4 ${blockClass}`} data-testid="quantity-selector">
@@ -142,6 +143,7 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
           type="button"
           onClick={handleDecrement}
           disabled={disabled || ((isControlled ? controlledValue! : internalValue) <= min)}
+          style={buttonStyle}
           className={`
             w-[35px] h-[35px] flex items-center justify-center shrink-0
             bg-[#4e46b4] text-white rounded-l-[4px]
@@ -177,6 +179,7 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
           type="button"
           onClick={handleIncrement}
           disabled={disabled || (max !== undefined && (isControlled ? controlledValue! : internalValue) >= max)}
+          style={buttonStyle}
           className={`
             w-[35px] h-[35px] flex items-center justify-center shrink-0
             bg-[#4e46b4] text-white rounded-r-[4px]
