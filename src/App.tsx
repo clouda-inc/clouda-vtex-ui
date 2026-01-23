@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import { Specification, type SpecificationData } from 'clouda-vtex-ui';
+import { ProductTabs, type ProductTabsData } from 'clouda-vtex-ui';
 import './App.css'
 
-const mockSpecificationData: SpecificationData = {
+const mockSpecificationData: ProductTabsData = {
   overview: `
     <p class="mb-8">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
   `,
@@ -46,7 +46,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <div className="p-10 text-left">
-        <Specification data={mockSpecificationData} />
+        <ProductTabs data={mockSpecificationData} />
       </div>
 
     </>

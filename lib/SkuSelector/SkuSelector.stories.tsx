@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import SkuSelector from './SkuSelector';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const meta: Meta<typeof SkuSelector> = {
   title: 'Layouts/SkuSelector',
