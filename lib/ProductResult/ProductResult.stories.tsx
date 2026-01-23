@@ -14,7 +14,7 @@ export default meta;
 type Story = StoryObj<typeof ProductResult>;
 
 const sampleProduct = {
-  variant: 'summary' as const,
+  variant: 'detailed' as const,
   title: 'Lorem ipsum tincidunt in',
   image: 'https://picsum.photos/800/800', // Placeholder as actual assets are local/figma specific
   description: 'Lorem ipsum tincidunt in',
@@ -23,6 +23,9 @@ const sampleProduct = {
     'Lorem ipsum tincidunt in',
   ],
   onReadMore: () => alert('Read more clicked'),
+  onAddToWishlist: () => alert('Added to wishlist'),
+  onAddToCart: () => alert('Added to cart'),
+  onCompare: () => alert('Compare clicked'),
   productLink: '#',
 };
 
@@ -36,7 +39,8 @@ export const Default: Story = {
   args: {
     products: sampleProducts,
     onLoadMore: () => alert('Load More Clicked'),
-    loadMoreButtonColor: "#4E46B4"
+    loadMoreButtonColor: "#4E46B4",
+    addToCartButtonColor: "#4E46B4"
   },
 };
 
@@ -61,5 +65,14 @@ export const CustomEmptyMessage: Story = {
   args: {
     products: [],
     emptyMessage: 'No items found matching your criteria.',
+  },
+};
+
+export const DetailedWithCustomColors: Story = {
+  args: {
+    products: sampleProducts.slice(0, 4),
+    onLoadMore: () => alert('Load More Clicked'),
+    addToCartButtonColor: '#ff9900', // Orange button
+    quantitySelectorColor: '#00cc00', // Green quantity selector
   },
 };

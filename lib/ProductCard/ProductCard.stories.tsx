@@ -28,7 +28,7 @@ export const Summary: Story = {
     title: 'Lorem ipsum tincidunt in',
     image: placeholderImage,
     description: 'Lorem ipsum tincidunt in <br/> <ul><li>Bullet 1</li><li>Bullet 2</li></ul>',
-    className: 'w-[240px]',
+    className: 'w-[250px]',
     productLink: '#',
   },
 };
@@ -47,10 +47,26 @@ export const Customized: Story = {
     variant: 'compact',
     title: 'Custom Product',
     image: placeholderImage,
-    className: 'w-[300px]',
+    className: 'w-[250px]',
     buttonColor: '#ff5722',
     quantitySelectorColor: '#ff5722',
     buttonText: 'Buy Now',
     buttonClassName: 'hover:opacity-90',
+  },
+};
+
+export const Detailed: Story = {
+  args: {
+    variant: 'detailed',
+    title: 'Detailed Product',
+    image: placeholderImage,
+    description: "This is a <b>detailed</b> product description. <br/> <ul><li>Feature 1</li><li>Feature 2</li></ul>",
+    className: 'w-[250px]',
+    onAddToWishlist: () => console.log('Added to Wishlist'),
+    onAddToCart: () => console.log('Added to Cart'),
+    onGetQuote: () => console.log('Get Quote Clicked'),
+    onCompare: () => console.log('Compare Clicked'),
+    productLink: '#',
+    buttonColor: "#4E46B4"
   },
 };

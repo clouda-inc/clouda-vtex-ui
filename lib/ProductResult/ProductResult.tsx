@@ -37,6 +37,14 @@ export interface ProductResultProps {
    * @default "Search result not found"
    */
   emptyMessage?: string;
+  /**
+   * Color for the "Add to Cart" button in the product card.
+   */
+  addToCartButtonColor?: string;
+  /**
+   * Color for the quantity selector in the product card.
+   */
+  quantitySelectorColor?: string;
 }
 
 export const ProductResult: React.FC<ProductResultProps> = ({
@@ -47,6 +55,8 @@ export const ProductResult: React.FC<ProductResultProps> = ({
   loadMoreButtonTextColor,
   loadMoreText = 'Load More',
   emptyMessage = 'Search result not found',
+  addToCartButtonColor,
+  quantitySelectorColor,
 }) => {
   if (products.length === 0) {
     return (
@@ -66,8 +76,13 @@ export const ProductResult: React.FC<ProductResultProps> = ({
           <ProductCard
             key={index}
             {...product}
-            variant="summary" // Enforce summary variant as per design
+            variant="detailed"
             className="w-full"
+            onAddToWishlist={() => {}} // Dummy handler
+            onAddToCart={() => {}}     // Dummy handler
+            onCompare={() => {}}       // Dummy handler
+            buttonColor={addToCartButtonColor}
+            quantitySelectorColor={quantitySelectorColor}
           />
         ))}
       </div>
