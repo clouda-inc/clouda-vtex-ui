@@ -14,6 +14,7 @@ interface QuotesTableProps {
   selectedIds: string[];
   onSelectOne: (id: string) => void;
   onSelectAll: () => void;
+  onViewQuote: (id: string) => void;
   primaryColor: string;
   secondaryColor: string;
 }
@@ -24,7 +25,8 @@ const MobileCard = ({
     selectedIds, 
     onSelectOne,
     primaryColor,
-    secondaryColor
+    secondaryColor,
+    onViewQuote
 }: { 
     quote: Quote; 
     index: number; 
@@ -32,6 +34,7 @@ const MobileCard = ({
     onSelectOne: (id: string) => void; 
     primaryColor: string;
     secondaryColor: string;
+    onViewQuote: (id: string) => void;
 }) => (
     <div 
         key={quote.id} 
@@ -61,7 +64,7 @@ const MobileCard = ({
 
         <div className="flex flex-col gap-2" onClick={(e) => e.stopPropagation()}>
             <div className={quote.status === 'Approved' ? "grid grid-cols-2 gap-2" : "w-full"}>
-                 <Button variant="primary" customColor={primaryColor} size="sm" className="font-['DM_Sans'] font-bold text-xs h-9 w-full justify-center whitespace-nowrap">
+                 <Button variant="primary" customColor={primaryColor} size="sm" className="font-['DM_Sans'] font-bold text-xs h-9 w-full justify-center whitespace-nowrap" onClick={() => onViewQuote(quote.id)}>
                     View Quote
                   </Button>
                   {quote.status === 'Approved' && (
@@ -90,6 +93,7 @@ export const QuotesTable: React.FC<QuotesTableProps> = ({
   selectedIds,
   onSelectOne,
   onSelectAll,
+  onViewQuote,
   primaryColor,
   secondaryColor,
 }) => {
@@ -139,7 +143,7 @@ export const QuotesTable: React.FC<QuotesTableProps> = ({
                     <td className="p-4 font-['DM_Sans'] text-sm text-[#1A1A1A]">{quote.status}</td>
                     <td className="p-4">
                         <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
-                        <Button variant="primary" customColor={primaryColor} size="sm" className="font-['DM_Sans'] font-bold text-xs h-8 whitespace-nowrap">
+                        <Button variant="primary" customColor={primaryColor} size="sm" className="font-['DM_Sans'] font-bold text-xs h-8 whitespace-nowrap" onClick={() => onViewQuote(quote.id)}>
                             View Quote
                         </Button>
                         {quote.status === 'Approved' && (
@@ -182,6 +186,7 @@ export const QuotesTable: React.FC<QuotesTableProps> = ({
                     onSelectOne={onSelectOne}
                     primaryColor={primaryColor}
                     secondaryColor={secondaryColor}
+                    onViewQuote={onViewQuote}
                 />
              ))}
              {quotes.length === 0 && (

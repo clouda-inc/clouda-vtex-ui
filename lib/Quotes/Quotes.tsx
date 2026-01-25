@@ -4,6 +4,7 @@ import { QuotesFilterBar } from './components/QuotesFilterBar';
 import { QuotesTable } from './components/QuotesTable';
 import type { Quote } from './components/QuotesTable';
 import { AddNewQuote } from './components/AddNewQuote';
+import { ViewQuote } from './components/ViewQuote';
 
 const DownloadIcon = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,6 +108,44 @@ export const Quotes: React.FC<QuotesProps> = ({
     }, [sortRef, bulkRef]);
 
     const [selectedBulkAction, setSelectedBulkAction] = useState<string | null>(null);
+    const [viewingQuoteId, setViewingQuoteId] = useState<string | null>(null);
+
+    // Mock Detail Data Helper
+    const getQuoteDetail = (id: string) => {
+        // Return mock details based on ID or just a generic one for demo
+        const baseQuote = mockQuotes.find(q => q.id === id);
+        return {
+            id: id,
+            quotationNumber: baseQuote?.quotationNumber || 'QN00045',
+            items: [
+                {
+                    id: 'p1',
+                    name: 'Lorem ipsum Lorem ipsum',
+                    sku: 'Lorem ipsum ut molestie',
+                    image: "https://placehold.co/72x72/E6E6E6/CCCCCC?text=Img",
+                    price: 100,
+                    quantity: 2,
+                    total: 200,
+                },
+                {
+                    id: 'p2',
+                    name: 'Lorem ipsum Lorem ipsum',
+                    sku: 'Lorem ipsum ut molestie',
+                    image: "https://placehold.co/72x72/E6E6E6/CCCCCC?text=Img",
+                    price: 100,
+                    quantity: 2,
+                    total: 200,
+                }
+            ],
+            salesRep: 'Lorem ipsum orci',
+            issuedDate: baseQuote?.date || '01/01/2026',
+            expiredDate: '01/02/2026',
+            subTotal: 40000,
+            shippingCost: 150,
+            tax: 100,
+            grandTotal: 40300,
+        };
+    };
 
     return (
         <div className="w-full max-w-[1440px] mx-auto p-4 md:p-8 font-['DM_Sans'] bg-white relative">
@@ -119,6 +158,18 @@ export const Quotes: React.FC<QuotesProps> = ({
                                 console.log("Submitted items:", items);
                                 setIsAddNewQuoteOpen(false);
                             }}
+                            primaryColor={primaryColor}
+                        />
+                    </div>
+                </div>
+            )}
+
+            {viewingQuoteId && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+                    <div className="w-full max-w-[1440px] h-[90vh] bg-white rounded-xl shadow-2xl overflow-hidden relative">
+                        <ViewQuote 
+                            data={getQuoteDetail(viewingQuoteId)}
+                            onClose={() => setViewingQuoteId(null)}
                             primaryColor={primaryColor}
                         />
                     </div>
@@ -262,6 +313,7 @@ export const Quotes: React.FC<QuotesProps> = ({
                 selectedIds={selectedIds}
                 onSelectOne={handleSelectOne}
                 onSelectAll={handleSelectAll}
+                onViewQuote={setViewingQuoteId}
                 primaryColor={primaryColor}
                 secondaryColor={secondaryColor}
             />
