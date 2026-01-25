@@ -76,3 +76,19 @@ export const DetailedWithCustomColors: Story = {
     quantitySelectorColor: '#00cc00', // Green quantity selector
   },
 };
+
+export const SummaryVariant: Story = {
+  args: {
+    products: sampleProducts.slice(0, 4),
+    onLoadMore: () => alert('Load More Clicked'),
+    cardVariant: 'summary',
+  },
+};
+
+export const CompactVariant: Story = {
+  args: {
+    products: sampleProducts.slice(0, 4),
+    onLoadMore: () => alert('Load More Clicked'),
+    cardVariant: 'compact',
+  },
+};

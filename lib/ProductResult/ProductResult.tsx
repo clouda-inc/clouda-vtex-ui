@@ -45,6 +45,11 @@ export interface ProductResultProps {
    * Color for the quantity selector in the product card.
    */
   quantitySelectorColor?: string;
+  /**
+   * Variation of the product card to render.
+   * @default "detailed"
+   */
+  cardVariant?: 'summary' | 'compact' | 'detailed';
 }
 
 export const ProductResult: React.FC<ProductResultProps> = ({
@@ -57,6 +62,7 @@ export const ProductResult: React.FC<ProductResultProps> = ({
   emptyMessage = 'Search result not found',
   addToCartButtonColor,
   quantitySelectorColor,
+  cardVariant = 'detailed',
 }) => {
   if (products.length === 0) {
     return (
@@ -76,7 +82,7 @@ export const ProductResult: React.FC<ProductResultProps> = ({
           <ProductCard
             key={index}
             {...product}
-            variant="detailed"
+            variant={cardVariant}
             className="w-full"
             onAddToWishlist={() => {}} // Dummy handler
             onAddToCart={() => {}}     // Dummy handler

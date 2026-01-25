@@ -24,7 +24,7 @@ export interface FilterSection {
   rangeValue?: [number, number]; // [min, max]
 }
 
-interface FilterNavigatorProps {
+export interface FilterNavigatorProps {
   title?: string;
   sections: FilterSection[];
   onFilterChange: (sectionId: string, value: any) => void;
