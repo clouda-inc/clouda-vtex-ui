@@ -8,7 +8,7 @@ const meta: Meta<typeof ProductCard> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['summary', 'compact'],
+      options: ['summary', 'compact', 'detailed'],
     },
     buttonColor: { control: 'color' },
     quantitySelectorColor: { control: 'color' },
