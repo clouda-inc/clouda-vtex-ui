@@ -34,6 +34,15 @@ export interface QuantitySelectorProps {
    * Disable the interaction
    */
   disabled?: boolean;
+  /**
+   * Size of the selector
+   * @default 'default'
+   */
+  size?: 'default' | 'small';
+  /**
+   * Custom background color for the buttons
+   */
+  buttonBackgroundColor?: string;
 }
 
 export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
@@ -45,9 +54,17 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   label = "Lorem ipsum",
   blockClass = "",
   disabled = false,
+  size = 'default',
+  buttonBackgroundColor,
 }) => {
   const isControlled = controlledValue !== undefined;
   const [internalValue, setInternalValue] = useState(initialValue);
+
+  const isSmall = size === 'small';
+  const buttonSizeClass = isSmall ? 'w-[32px] h-[32px]' : 'w-[35px] h-[35px]';
+  const inputHeightClass = isSmall ? 'h-[32px]' : 'h-[35px]';
+
+  const buttonStyle = buttonBackgroundColor ? { backgroundColor: buttonBackgroundColor } : {};
 
   // Use a string for the input display to allow intermediate typing (like empty string)
   const [inputValue, setInputValue] = useState<string>(
@@ -142,8 +159,9 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
           type="button"
           onClick={handleDecrement}
           disabled={disabled || ((isControlled ? controlledValue! : internalValue) <= min)}
+          style={buttonStyle}
           className={`
-            w-[35px] h-[35px] flex items-center justify-center shrink-0
+            ${buttonSizeClass} flex items-center justify-center shrink-0
             bg-[#4e46b4] text-white rounded-l-[4px]
             hover:bg-[#3d3790] active:bg-[#2e2970]
             disabled:opacity-50 disabled:cursor-not-allowed
@@ -157,7 +175,7 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
         </button>
 
         {/* Input Area */}
-        <div className="relative h-[35px] bg-white border-y border-[#bbbbbb] flex items-center justify-center w-auto">
+        <div className={`relative ${inputHeightClass} bg-white border-y border-[#bbbbbb] flex items-center justify-center w-auto`}>
           <div className="flex items-center justify-center min-w-[24px] px-1.5">
             <input
               type="text"
@@ -177,8 +195,9 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
           type="button"
           onClick={handleIncrement}
           disabled={disabled || (max !== undefined && (isControlled ? controlledValue! : internalValue) >= max)}
+          style={buttonStyle}
           className={`
-            w-[35px] h-[35px] flex items-center justify-center shrink-0
+            ${buttonSizeClass} flex items-center justify-center shrink-0
             bg-[#4e46b4] text-white rounded-r-[4px]
             hover:bg-[#3d3790] active:bg-[#2e2970]
             disabled:opacity-50 disabled:cursor-not-allowed
