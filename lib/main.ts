@@ -8,3 +8,6 @@ export { ImageGallery } from './ImageGallery/ImageGallery';
 export { default as ProductCard } from './ProductCard/ProductCard';
 export { default as RelatedProducts } from './RelatedProducts/RelatedProducts';
 export { ProductConfiguration } from './ProductConfiguration/ProductConfiguration';
+export { default as HomeHeroBanner } from './HomeHeroBanner/HomeHeroBanner';
+export { default as Checkout } from './Checkout/Checkout';
+
