@@ -26,21 +26,32 @@ This skill encapsulates the process of transforming a Figma design selection int
 ## 3. Implementation
 - **Create Component**:
     - Path: `lib/<ComponentName>/<ComponentName>.tsx`
+    - **Subcomponents (Optional but Recommended)**:
+        - If the component is complex, break it down into smaller subcomponents.
+        - **Reusable Subcomponents**: If a subcomponent is usable for *other* components, make it a main component (e.g., `lib/<SharedComponent>/`).
+        - Path (if exclusive): `lib/<ComponentName>/components/<SubComponentName>.tsx`.
+        - **Requirement**: Create a corresponding `.stories.tsx` for *every* subcomponent.
+    - **Assets**:
+        - **Rule**: DO NOT reference images via `http://localhost:xxxx` or external URLs.
+        - **Action**: Save all assets (images, icons) to a local `assets` folder: `lib/<ComponentName>/assets/`.
+        - **Usage**: Import them directly in code: `import myIcon from './assets/icon.svg';`.
     - **Rules**:
         - Use Functional Components with TypeScript interfaces.
+        - **Props**: ALWAYS have props for dynamic data. Avoid hardcoding text/values that should be dynamic.
         - Use Tailwind CSS for styling.
-        - **Typography**: Be precise! If Figma says `DM Sans`, ensures it is imported or available.
+        - **Typography**: Be precise! If Figma says `DM Sans`, ensure it is imported or available.
         - **Layout**: Use Flexbox/Grid to match the Figma Screenshot exactly.
 - **Create Stories**:
     - Path: `lib/<ComponentName>/<ComponentName>.stories.tsx`
     - **Rules**:
         - Create a `Default` story with realistic mock data that mirrors the Figma content.
+        - Create stories for all subcomponents as well.
         - Create edge case stories if applicable (e.g., empty lists).
 - **Export**:
-    - Update `lib/main.ts` (or the library entry point) to export the new component.
+    - Update `lib/main.ts` (or the library entry point) to export the new component(s).
 
 ## 4. Verification & Refinement
-- **Note**: Storybook will be running.
+- **Action**: Run `npm run storybook`.
 - **Action**: Use `browser_subagent` to navigate to the story.
     - **Task**: "Navigate to the story, wait for render, and take a screenshot."
 - **Comparison**:
@@ -50,10 +61,14 @@ This skill encapsulates the process of transforming a Figma design selection int
         - If colors match but font is wrong -> Check font imports.
         - If borders are missing -> Add specific border widths/colors.
     - **Repeat** the screenshot verification after fixes.
+- **Action**: Stop the Storybook server.
+    - **Command**: Terminate the process (e.g., `CTRL+C` or kill command) to free up resources.
 
 ## 5. Final Output
 - **Action**: Create a `walkthrough.md` artifact.
+    - **Location**: `lib/<ComponentName>/walkthrough.md` (MUST be inside the component folder).
 - **Content**:
-    - Summary of the component created.
+    - Summary of the component (and subcomponents) created.
     - File links (`.tsx`, `.stories.tsx`).
     - **Proof**: Embed the final Storybook screenshot(s) showing it matches the design.
+    - **Subcomponents**: Include screenshots or verification for subcomponents if they have their own stories.

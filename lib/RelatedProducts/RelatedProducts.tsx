@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductCard, { type ProductCardProps } from '../ProductCard/ProductCard';
+import { ProductCard, type ProductCardProps } from '../ProductCard/ProductCard';
 
 export interface RelatedProductsProps extends ProductCardProps {
     /**
@@ -14,6 +14,10 @@ export interface RelatedProductsProps extends ProductCardProps {
      * Custom class for individual attribute rows
      */
     attributeRowBlockClass?: string;
+    /**
+     * Custom class for the root container
+     */
+    blockClass?: string;
 }
 
 /**
@@ -36,7 +40,7 @@ export const RelatedProducts: React.FC<RelatedProductsProps> = ({
             */}
             <ProductCard
                 {...productCardProps}
-                blockClass="rounded-b-none border-b-0"
+                className="rounded-b-none border-b-0"
             />
 
             {/* Attributes Section */}

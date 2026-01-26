@@ -22,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   customColor,
   rounded = false,
+  style: userStyle,
   ...props
 }) => {
   const baseClasses = 'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50';
@@ -49,16 +50,18 @@ const Button: React.FC<ButtonProps> = ({
     className,
   ].filter(Boolean).join(' ');
 
-  const style: React.CSSProperties = {};
+  const computedStyle: React.CSSProperties = {};
   if (variant === 'primary' && customColor) {
-    style.backgroundColor = customColor;
+    computedStyle.backgroundColor = customColor;
   }
+
+  const finalStyle = userStyle ? { ...computedStyle, ...userStyle } : computedStyle;
 
   return (
     <button
       className={combinedClasses}
       disabled={disabled}
-      style={props.style ? { ...style, ...props.style } : style}
+      style={finalStyle}
       {...props}
     >
       {showIcon && icon && <span className="inline-flex shrink-0">{icon}</span>}

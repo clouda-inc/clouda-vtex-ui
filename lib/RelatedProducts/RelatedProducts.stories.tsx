@@ -11,7 +11,7 @@ const meta: Meta<typeof RelatedProducts> = {
     tags: ['autodocs'],
     argTypes: {
         attributes: { control: 'object' },
-        onQuoteClick: { action: 'clicked' },
+        onGetQuote: { action: 'clicked' },
         onQuantityChange: { action: 'quantity changed' },
     },
 };
@@ -23,7 +23,6 @@ export const Default: Story = {
     args: {
         title: 'Lorem ipsum tincidunt in',
         description: 'Lorem ipsum dolor sit amet',
-        initialQuantity: 1,
         attributes: [
             'Lorem ipsum tincidunt in',
             'Consectetur adipiscing elit',
@@ -150,7 +149,6 @@ export const Carousel: Story = {
         const items = Array(8).fill(null).map((_, i) => ({
             ...args,
             title: `Product ${i + 1}`,
-            initialQuantity: 1,
         }));
 
         return (
