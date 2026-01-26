@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import type { Settings } from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -21,7 +20,6 @@ export interface ImageGalleryProps {
     blockClass?: string;
 }
 
-// Arrow components for better styling control
 // Arrow components for better styling control
 const SampleNextArrow = (props: any) => {
     const { className, style, onClick } = props;
@@ -49,6 +47,8 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, blockClass =
     const [nav1, setNav1] = React.useState<Slider | null>(null);
     const [nav2, setNav2] = React.useState<Slider | null>(null);
     const [imageErrors, setImageErrors] = React.useState<Record<number, boolean>>({});
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const sliderRef = useRef<Slider>(null);
 
     const handleImageError = (index: number) => {
         setImageErrors(prev => ({ ...prev, [index]: true }));
@@ -56,25 +56,13 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, blockClass =
 
     // Mobile Settings
     const mobileSettings: Settings = {
-        dots: true,
+        dots: false, // Customized external dots
+        arrows: false, // Customized external arrows
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        arrows: true,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
-        customPaging: () => (
-            <div
-                style={{
-                    width: "10px",
-                    height: "10px",
-                    borderRadius: "50%",
-                    backgroundColor: "#D9D9D9",
-                }}
-                className="slick-dot-custom"
-            />
-        )
+        beforeChange: (_, newIndex) => setCurrentSlide(newIndex),
     };
 
     // Desktop Main Slider Settings
@@ -138,37 +126,31 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, blockClass =
                      border-radius: 10px;
                 }
                 
+                
                 /* Desktop: Position thumbnail arrows outside */
                 .thumbnail-slider .slick-prev {
                     left: -40px !important;
+                    z-index: 10;
                 }
                 .thumbnail-slider .slick-next {
                     right: -40px !important;
+                    z-index: 10;
                 }
-                
-                /* Mobile: Ensure slider renders properly */
-                @media (max-width: 768px) {
-                    .slick-slider {
-                        width: 100%;
-                    }
-                    .slick-list {
-                        width: 100%;
-                    }
-                    .slick-track {
-                        display: flex;
-                    }
-                    .slick-slide {
-                        float: none;
-                    }
-                    .slick-slide > div {
-                        width: 100%;
-                    }
+
+                /* Mobile: Force slider to respect container width */
+                .mobile-image-gallery {
+                    width: 100% !important;
+                    overflow: hidden !important;
+                    box-sizing: border-box !important;
+                }
+                .mobile-image-gallery .slick-list {
+                    overflow: hidden !important;
                 }
             `}</style>
 
             {/* Mobile View */}
-            <div className="block md:hidden" style={{ width: '100%' }}>
-                <Slider {...mobileSettings}>
+            <div className="block md:hidden mobile-image-gallery" style={{ width: '100%', maxWidth: 'calc(100vw - 32px)', margin: '0 auto' }}>
+                <Slider {...mobileSettings} ref={sliderRef}>
                     {images.map((img, index) => (
                         <div key={index} className="outline-none">
                             <div className="w-full aspect-square relative">
@@ -190,6 +172,45 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, blockClass =
                         </div>
                     ))}
                 </Slider>
+
+                {/* Custom Navigation Controls */}
+                <div className="flex items-center justify-center gap-4 mt-4">
+                    {/* Left Arrow */}
+                    <button
+                        onClick={() => sliderRef.current?.slickPrev()}
+                        className="p-2 focus:outline-none"
+                        aria-label="Previous slide"
+                    >
+                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 13L1 7L7 1" stroke="#3F3F46" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+
+                    {/* Dots */}
+                    <div className="flex items-center gap-2">
+                        {images.map((_, index) => (
+                            <div
+                                key={index}
+                                onClick={() => sliderRef.current?.slickGoTo(index)}
+                                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${currentSlide === index
+                                    ? 'w-8 bg-[#4B5563]'
+                                    : 'w-2.5 bg-[#D1D5DB]'
+                                    }`}
+                            />
+                        ))}
+                    </div>
+
+                    {/* Right Arrow */}
+                    <button
+                        onClick={() => sliderRef.current?.slickNext()}
+                        className="p-2 focus:outline-none"
+                        aria-label="Next slide"
+                    >
+                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 13L7 7L1 1" stroke="#3F3F46" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             {/* Desktop View */}
