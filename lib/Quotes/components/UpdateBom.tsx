@@ -15,13 +15,13 @@ const CloseIcon = () => (
     </svg>
 );
 
-const UploadIcon = ({ color = '#1A1A1A' }: { color?: string }) => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 16.2422C2.79377 15.6833 2.01562 14.4173 2.01562 13C2.01562 10.7417 3.79166 8.86835 6.05051 8.86835C6.26257 8.86835 6.46743 8.88939 6.66318 8.92873C7.36645 5.56456 10.3204 3 13.8894 3C18.2393 3 21.7656 6.52629 21.7656 10.8762C21.7656 10.9664 21.7644 11.056 21.762 11.1451C21.9056 11.1392 22.0503 11.1362 22.196 11.1362C23.195 11.1362 24 11.9412 24 12.9402C24 13.9392 23.195 14.7442 22.196 14.7442H13.8894" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M12 21V11" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M9 14L12 11L15 14" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-);
+// const UploadIcon = ({ color = '#1A1A1A' }: { color?: string }) => (
+//     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+//         <path d="M4 16.2422C2.79377 15.6833 2.01562 14.4173 2.01562 13C2.01562 10.7417 3.79166 8.86835 6.05051 8.86835C6.26257 8.86835 6.46743 8.88939 6.66318 8.92873C7.36645 5.56456 10.3204 3 13.8894 3C18.2393 3 21.7656 6.52629 21.7656 10.8762C21.7656 10.9664 21.7644 11.056 21.762 11.1451C21.9056 11.1392 22.0503 11.1362 22.196 11.1362C23.195 11.1362 24 11.9412 24 12.9402C24 13.9392 23.195 14.7442 22.196 14.7442H13.8894" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+//         <path d="M12 21V11" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+//         <path d="M9 14L12 11L15 14" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+//     </svg>
+// );
 
 
 const CloudUploadIcon = ({ color }: { color?: string }) => (
