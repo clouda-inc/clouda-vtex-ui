@@ -15,9 +15,6 @@ export interface ProductResultProps {
   /**
    * Custom class for the root container.
    */
-  /**
-   * Custom class for the root container.
-   */
   className?: string;
   /**
    * Background color for the "Load More" button.
@@ -87,6 +84,7 @@ export const ProductResult: React.FC<ProductResultProps> = ({
             onAddToWishlist={() => {}} // Dummy handler
             onAddToCart={() => {}}     // Dummy handler
             onCompare={() => {}}       // Dummy handler
+            onGetQuote={() => {}}      // Dummy handler
             buttonColor={addToCartButtonColor}
             quantitySelectorColor={quantitySelectorColor}
           />

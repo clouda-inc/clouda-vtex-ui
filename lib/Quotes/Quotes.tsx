@@ -5,6 +5,7 @@ import { QuotesTable } from './components/QuotesTable';
 import type { Quote } from './components/QuotesTable';
 import { AddNewQuote } from './components/AddNewQuote';
 import { ViewQuote } from './components/ViewQuote';
+import { UpdateBom } from './components/UpdateBom';
 
 const DownloadIcon = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,6 +44,7 @@ export const Quotes: React.FC<QuotesProps> = ({
     const [isSortOpen, setIsSortOpen] = useState(false);
     const [isBulkOpen, setIsBulkOpen] = useState(false);
     const [isAddNewQuoteOpen, setIsAddNewQuoteOpen] = useState(false);
+    const [isUpdateBomOpen, setIsUpdateBomOpen] = useState(false);
 
     const filteredQuotes = mockQuotes.filter(q => {
         if (activeFilters.length === 0) return true;
@@ -66,7 +68,7 @@ export const Quotes: React.FC<QuotesProps> = ({
     };
 
     // If all specific filters are selected, it's effectively "All" visually, but we can keep them selected or clear them. 
-    // User requirement: "when filter by is set to All or all the filters are selected viceversa, all the items should be active."
+    // User requirement: "when filter by is set to All or all the items should be active."
     // My logic: If activeFilters has all 3, it shows all 3 types. If activeFilters is empty, it shows all types. So it works.
     
     // Check if "All" state is active (either empty list or all specific filters selected)
@@ -164,6 +166,25 @@ export const Quotes: React.FC<QuotesProps> = ({
                 </div>
             )}
 
+            {isUpdateBomOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+                    {/* UpdateBom matches the width design of AddNewQuote roughly, but UpdateBom has its own max-w defined in component. 
+                        We wrap it to center it. The inner component has max-w-[800px]. 
+                    */}
+                    <div className="w-full max-w-[800px] h-auto max-h-[90vh] bg-transparent rounded-xl shadow-2xl overflow-hidden relative">
+                         <UpdateBom 
+                            onClose={() => setIsUpdateBomOpen(false)}
+                            onUpload={(file) => {
+                                console.log("Uploaded file:", file);
+                                setIsUpdateBomOpen(false);
+                            }}
+                            primaryColor={primaryColor}
+                            isOpen={true}
+                        />
+                    </div>
+                </div>
+            )}
+
             {viewingQuoteId && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
                     <div className="w-full max-w-[1440px] h-[90vh] bg-white rounded-xl shadow-2xl overflow-hidden relative">
@@ -203,7 +224,13 @@ export const Quotes: React.FC<QuotesProps> = ({
                     >
                         Add New Quote
                     </Button>
-                    <Button variant="outline" className="font-bold text-sm text-gray-900 border-gray-300 w-full lg:w-auto justify-center">Upload BOM</Button>
+                    <Button 
+                        variant="outline" 
+                        className="font-bold text-sm text-gray-900 border-gray-300 w-full lg:w-auto justify-center"
+                        onClick={() => setIsUpdateBomOpen(true)}
+                    >
+                        Upload BOM
+                    </Button>
                     <Button variant="outline" className="hidden lg:inline-flex font-bold text-sm text-gray-700 border-gray-400 gap-2">
                         <DownloadIcon />
                         Export

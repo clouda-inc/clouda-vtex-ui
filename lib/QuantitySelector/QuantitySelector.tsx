@@ -35,12 +35,15 @@ export interface QuantitySelectorProps {
    */
   disabled?: boolean;
   /**
-   * Custom color for the buttons
+   * Size of the selector
+   * @default 'default'
    */
-  customColor?: string;
+  size?: 'default' | 'small';
   /**
-   * Whether the selector should span the full width of its container
+   * Custom background color for the buttons
    */
+  buttonBackgroundColor?: string;
+  customColor?: string;
   fullWidth?: boolean;
 }
 
@@ -55,9 +58,18 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   disabled = false,
   customColor,
   fullWidth = false,
+  size = 'default',
+  buttonBackgroundColor,
 }) => {
   const isControlled = controlledValue !== undefined;
   const [internalValue, setInternalValue] = useState(initialValue);
+
+  const isSmall = size === 'small';
+  const buttonSizeClass = isSmall ? 'w-[32px] h-[32px]' : 'w-[35px] h-[35px]';
+  const inputHeightClass = isSmall ? 'h-[32px]' : 'h-[35px]';
+
+  const finalButtonColor = buttonBackgroundColor || customColor;
+  const buttonStyle = finalButtonColor ? { backgroundColor: finalButtonColor } : {};
 
   // Use a string for the input display to allow intermediate typing (like empty string)
   const [inputValue, setInputValue] = useState<string>(
@@ -132,7 +144,7 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
     }
   };
   
-  const buttonStyle: React.CSSProperties = customColor ? { backgroundColor: customColor } : {};
+
 
   return (
     <div className={`flex items-center gap-4 ${fullWidth ? 'w-full' : ''} ${blockClass}`} data-testid="quantity-selector">
@@ -151,6 +163,7 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
           style={buttonStyle}
           className={`
             ${fullWidth ? 'flex-1 w-auto' : 'w-[35px]'} h-[35px] flex items-center justify-center shrink-0
+            ${buttonSizeClass} flex items-center justify-center shrink-0
             bg-[#4e46b4] text-white rounded-l-[4px]
             hover:bg-[#3d3790] active:bg-[#2e2970]
             disabled:opacity-50 disabled:cursor-not-allowed
@@ -164,7 +177,7 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
         </button>
 
         {/* Input Area */}
-        <div className={`relative h-[35px] bg-white border-y border-[#bbbbbb] flex items-center justify-center ${fullWidth ? 'flex-[2] w-auto' : 'w-auto'}`}>
+        <div className={`relative ${inputHeightClass} bg-white border-y border-[#bbbbbb] flex items-center justify-center ${fullWidth ? 'flex-[2] w-auto' : 'w-auto'}`}>
           <div className="flex items-center justify-center min-w-[24px] px-1.5">
             <input
               type="text"
@@ -187,6 +200,7 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
           style={buttonStyle}
           className={`
             ${fullWidth ? 'flex-1 w-auto' : 'w-[35px]'} h-[35px] flex items-center justify-center shrink-0
+            ${buttonSizeClass} flex items-center justify-center shrink-0
             bg-[#4e46b4] text-white rounded-r-[4px]
             hover:bg-[#3d3790] active:bg-[#2e2970]
             disabled:opacity-50 disabled:cursor-not-allowed
