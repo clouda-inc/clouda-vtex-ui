@@ -47,6 +47,12 @@ export interface ProductResultProps {
    * @default "detailed"
    */
   cardVariant?: 'summary' | 'compact' | 'detailed';
+  /**
+   * Minimum number of products required to show the "Load More" button.
+   * The button will only be visible if products.length > loadMoreThreshold.
+   * @default 12
+   */
+  loadMoreThreshold?: number;
 }
 
 export const ProductResult: React.FC<ProductResultProps> = ({
@@ -60,6 +66,7 @@ export const ProductResult: React.FC<ProductResultProps> = ({
   addToCartButtonColor,
   quantitySelectorColor,
   cardVariant = 'detailed',
+  loadMoreThreshold = 12,
 }) => {
   if (products.length === 0) {
     return (
@@ -92,7 +99,7 @@ export const ProductResult: React.FC<ProductResultProps> = ({
       </div>
 
       {/* Load More Button */}
-      {onLoadMore && (
+      {onLoadMore && products.length > loadMoreThreshold && (
         <div className="w-full flex justify-start">
           <Button
             variant="primary"

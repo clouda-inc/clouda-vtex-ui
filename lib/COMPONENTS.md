@@ -167,6 +167,7 @@ import { ProductResult } from "@clouda-inc/clouda-vtex-ui";
 - **addToCartButtonColor?**: `string`
 - **quantitySelectorColor?**: `string`
 - **cardVariant?**: `'summary' | 'compact' | 'detailed'` (Default: 'detailed')
+- **loadMoreThreshold?**: `number` (Default: `12`)
 
 ---
 
