@@ -23,6 +23,20 @@ export interface ProductConfigurationProps {
     specsHeight?: string | number;
     blockClass?: string;
     selectedItemColor?: string;
+    /**
+     * Callback fired when a specification option is selected.
+     * returning the full map of selected options key-values.
+     * Example: { "Color": "Blue", "Size": "M" }
+     */
+    onSelectionChange?: (selections: Record<string, string>) => void;
+    /**
+     * (Optional) If you want to control the state from the parent.
+     */
+    selectedSelections?: Record<string, string>;
+    /**
+     * Callback fired when quantity changes.
+     */
+    onQuantityChange?: (quantity: number) => void;
 }
 
 const CustomColorDropdown = ({
@@ -126,8 +140,11 @@ export const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
     specsHeight,
     blockClass = "",
     selectedItemColor = "#4e46b4",
+    onSelectionChange,
+    selectedSelections,
+    onQuantityChange
 }) => {
-    const [selectedSpecs, setSelectedSpecs] = useState<Record<string, string>>(() => {
+    const [internalSpecs, setInternalSpecs] = useState<Record<string, string>>(() => {
         const defaults: Record<string, string> = {};
         specifications.forEach(s => {
             if (s.options.length > 0) defaults[s.id] = s.options[0].value;
@@ -135,8 +152,16 @@ export const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
         return defaults;
     });
 
+    const selectedSpecs = selectedSelections || internalSpecs;
+
     const handleSpecSelect = (sectionId: string, value: string) => {
-        setSelectedSpecs((prev) => ({ ...prev, [sectionId]: value }));
+        const newSpecs = { ...selectedSpecs, [sectionId]: value };
+
+        if (!selectedSelections) {
+            setInternalSpecs(newSpecs);
+        }
+
+        onSelectionChange?.(newSpecs);
     };
 
     const scrollAreaStyle = specsHeight
@@ -151,10 +176,10 @@ export const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
     );
 
     return (
-        <div className={`product-config relative z-[9999] flex flex-col w-full bg-white ${blockClass}`}>
+        <div className={`product-config relative flex flex-col w-full bg-white ${blockClass}`}>
             {/* Scrollable Specifications Area */}
             <div
-                className="product-config__scroll-area relative z-10 pt-2 px-1"
+                className="product-config__scroll-area relative pt-2 px-1"
                 style={scrollAreaStyle}
             >
                 {otherSections.map((section) => {
@@ -223,8 +248,8 @@ export const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
                                                 key={opt.value}
                                                 onClick={() => handleSpecSelect(section.id, opt.value)}
                                                 style={isActive ? {
-                                                    backgroundColor: selectedItemColor,
-                                                    color: '#ffffff',
+                                                    backgroundColor: '#ffffff',
+                                                    color: selectedItemColor,
                                                     borderColor: selectedItemColor
                                                 } : undefined}
                                                 className={`
@@ -283,6 +308,10 @@ export const ProductConfiguration: React.FC<ProductConfigurationProps> = ({
                     label="Quantity"
                     buttonBackgroundColor={selectedItemColor}
                     {...quantityProps}
+                    onChange={(val) => {
+                        quantityProps?.onChange?.(val);
+                        onQuantityChange?.(val);
+                    }}
                 />
             </div>
         </div>
