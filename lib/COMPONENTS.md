@@ -53,7 +53,7 @@ A detailed section for product pages, organizing content into tabs: Overview, Sp
 
 **Import:**
 ```ts
-import { ProductDetailsSection } from "@clouda-inc/clouda-vtex-ui";
+import { HomeHeroBanner } from "@clouda-inc/clouda-vtex-ui";
 ```
 
 **Props (`ProductDetailsSectionProps`):**
