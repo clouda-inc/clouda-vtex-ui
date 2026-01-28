@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ViewQuote, type QuoteDetail } from './ViewQuote';
 
 const meta: Meta<typeof ViewQuote> = {
-    title: 'Pages/Quotes/Components/ViewQuote',
+    title: 'Components/ViewQuote',
     component: ViewQuote,
     parameters: {
         layout: 'fullscreen',

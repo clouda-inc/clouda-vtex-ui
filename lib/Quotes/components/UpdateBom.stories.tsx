@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { UpdateBom } from './UpdateBom';
 
 const meta: Meta<typeof UpdateBom> = {
-    title: 'Pages/Quotes/Components/UpdateBom',
+    title: 'Components/UpdateBom',
     component: UpdateBom,
     parameters: {
         layout: 'centered',

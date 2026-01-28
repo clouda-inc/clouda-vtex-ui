@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { AddNewQuote } from './AddNewQuote';
 
 const meta: Meta<typeof AddNewQuote> = {
-    title: 'Pages/Quotes/Components/AddNewQuote',
+    title: 'Components/AddNewQuote',
     component: AddNewQuote,
     parameters: {
         layout: 'fullscreen',

@@ -258,7 +258,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                     e.preventDefault();
                     onAddToWishlist();
                   }}
-                  className="absolute top-2 right-2 p-1.5 bg-white/80 rounded-full hover:bg-white transition-colors z-10 shadow-sm"
+                  className="absolute top-2 right-2 p-1.5 bg-white/80 rounded-full hover:bg-white transition-colors shadow-sm"
                   aria-label="Add to wishlist"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -274,7 +274,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                     e.preventDefault();
                     onCompare();
                   }}
-                  className="absolute bottom-2 right-2 p-1.5 bg-white/80 rounded hover:bg-white transition-colors z-10 shadow-sm border border-gray-200"
+                  className="absolute bottom-2 right-2 p-1.5 bg-white/80 rounded hover:bg-white transition-colors shadow-sm border border-gray-200"
                   aria-label="Compare"
                 >
                   <svg width="27" height="27" viewBox="0 0 27 27" fill="none" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg">

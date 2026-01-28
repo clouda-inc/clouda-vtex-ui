@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145 60" fill="none">
+  <!-- Isometric cube shape -->
+  <g fill="#B8B8B8">
+    <!-- Top diamond face -->
+    <polygon points="25,10 45,20 25,30 5,20"/>
+    <!-- Left face -->
+    <polygon points="5,20 25,30 25,50 5,40" fill="#9E9E9E"/>
+    <!-- Right face -->
+    <polygon points="25,30 45,20 45,40 25,50"/>
+  </g>
+  <!-- "Logo" text -->
+  <text x="58" y="42" font-family="Arial, sans-serif" font-size="32" font-weight="600" fill="#B8B8B8">Logo</text>
+</svg>

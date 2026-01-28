@@ -34,6 +34,14 @@ export interface InfoCardProps {
    * Additional CSS classes
    */
   className?: string;
+  /**
+   * Custom color for the primary button
+   */
+  primaryButtonColor?: string;
+  /**
+   * Custom color for the secondary button
+   */
+  secondaryButtonColor?: string;
 }
 
 export const InfoCard: React.FC<InfoCardProps> = ({
@@ -45,6 +53,8 @@ export const InfoCard: React.FC<InfoCardProps> = ({
   secondaryButtonLabel,
   onSecondaryClick,
   className = '',
+  primaryButtonColor,
+  secondaryButtonColor,
 }) => {
   return (
     <div className={`p-4 xl:p-0 font-['DM_Sans',sans-serif] ${className}`}>
@@ -89,6 +99,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({
                             variant="primary"
                             onClick={onPrimaryClick}
                             className="w-full xl:w-auto px-6"
+                            customColor={primaryButtonColor}
                         >
                             {primaryButtonLabel}
                         </Button>
@@ -100,6 +111,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({
                             variant="outline"
                             onClick={onSecondaryClick}
                             className="w-full xl:w-auto px-6"
+                            customColor={secondaryButtonColor}
                         >
                             {secondaryButtonLabel}
                         </Button>
