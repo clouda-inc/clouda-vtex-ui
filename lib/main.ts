@@ -64,3 +64,7 @@ export { ProductListingPage } from './Pages/ProductListingPage/ProductListingPag
 export type { ProductListingPageProps } from './Pages/ProductListingPage/ProductListingPage';
 export { ProductPage } from './Pages/ProductPage/ProductPage';
 export type { ProductPageProps } from './Pages/ProductPage/ProductPage';
+export { MyProfile } from './MyProfile/MyProfile';
+export { Wishlist } from './Wishlist/Wishlist';
+export { MyAccountPage } from './Pages/MyAccountPage/MyAccountPage';
+export type { MyAccountPageProps } from './Pages/MyAccountPage/MyAccountPage';

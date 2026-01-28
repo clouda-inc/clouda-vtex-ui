@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ImageGallery, type ImageGalleryProps } from '../../ImageGallery/ImageGallery';
 import { ProductConfiguration, type ProductConfigurationProps } from '../../ProductConfiguration/ProductConfiguration';
 import ProductDetailsSection, { type ProductDetailsSectionProps } from '../../ProductDetailsSection/ProductDetailsSection';
