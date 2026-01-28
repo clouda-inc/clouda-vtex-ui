@@ -90,7 +90,7 @@ export const HomeHeroBanner: React.FC<HomeHeroBannerProps> = ({
             )}
 
             {/* ----------- CONTENT CONTAINER ----------- */}
-            <div className="relative z-10 w-full bg-white md:bg-transparent px-5 pb-8 md:px-10 lg:px-20 md:py-0 md:h-full md:absolute md:inset-0 md:flex md:items-center max-w-none md:max-w-[1440px] mx-auto">
+            <div className="relative w-full bg-white md:bg-transparent px-5 pb-8 md:px-10 lg:px-20 md:py-0 md:h-full md:absolute md:inset-0 md:flex md:items-center max-w-none md:max-w-[1440px] mx-auto">
                 <div className="max-w-[800px]">
                     <h1 className="text-[40px] md:text-[56px] lg:text-[72px] font-bold text-black font-['DM_Sans'] leading-[1.1] md:leading-[1.05] tracking-[-0.02em] mb-4 md:mb-6">
                         {title}
