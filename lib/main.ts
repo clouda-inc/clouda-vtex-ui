@@ -60,3 +60,5 @@ export type { IconCardCarouselProps } from './IconCardCarousel/IconCardCarousel'
 export { default as StandardCardCarousel } from './StandardCardCarousel/StandardCardCarousel';
 export type { StandardCardCarouselProps } from './StandardCardCarousel/StandardCardCarousel';
 export { HomePage } from './Pages/Home/HomePage';
+export { ProductListingPage } from './Pages/ProductListingPage/ProductListingPage';
+export type { ProductListingPageProps } from './Pages/ProductListingPage/ProductListingPage';

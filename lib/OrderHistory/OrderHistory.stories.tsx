@@ -4,7 +4,7 @@ import type { OrderData } from '../OrderDetails/OrderDetails';
 import type { OrderItemData } from '../OrderDetails/components/OrderItem';
 
 const meta: Meta<typeof OrderHistory> = {
-  title: 'Pages/Orders/OrderHistory',
+  title: 'Components/OrderHistory',
   component: OrderHistory,
   parameters: {
     layout: 'fullscreen',

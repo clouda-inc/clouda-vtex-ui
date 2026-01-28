@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import MainNav from './MainNav';
 
 const meta = {
-  title: 'Layouts/MainNav',
+  title: 'Components/MainNav',
   component: MainNav,
   parameters: {
     layout: 'fullscreen',

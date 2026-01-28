@@ -21,10 +21,9 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
 }) => {
   return (
     <div
-      className={`relative w-full border-[3px] overflow-hidden ${className}`}
+      className={`relative w-full overflow-hidden ${className}`}
       style={{ 
         backgroundColor: '#EEF1F4', 
-        borderColor: '#545F71' 
       }}
     >
       {/* Desktop: Background image covering entire component */}
