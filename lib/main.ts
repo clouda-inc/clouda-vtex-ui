@@ -46,3 +46,17 @@ export { default as MainNav } from './MainNav/MainNav';
 export type { MainNavProps } from './MainNav/MainNav';
 export { MainFooter } from './MainFooter/MainFooter';
 export type { MainFooterProps } from './MainFooter/MainFooter';
+
+export { default as HomeNumbers } from './HomeNumbers/HomeNumbers';
+export type { HomeNumbersProps, HomeNumbersItem } from './HomeNumbers/HomeNumbers';
+export { Testimonial } from './Testimonial/Testimonial';
+export { Feature } from './Feature/Feature';
+export { FeatureBrands } from './FeatureBrands/FeatureBrands';
+export { HomeTitle } from './HomeTitle/HomeTitle';
+export { default as ContentCard } from './ContentCard/ContentCard';
+export type { ContentCardProps } from './ContentCard/ContentCard';
+export { IconCardCarousel } from './IconCardCarousel/IconCardCarousel';
+export type { IconCardCarouselProps } from './IconCardCarousel/IconCardCarousel';
+export { default as StandardCardCarousel } from './StandardCardCarousel/StandardCardCarousel';
+export type { StandardCardCarouselProps } from './StandardCardCarousel/StandardCardCarousel';
+export { HomePage } from './Pages/Home/HomePage';

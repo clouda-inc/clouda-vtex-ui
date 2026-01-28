@@ -385,3 +385,304 @@ import { Title } from "@clouda-inc/clouda-vtex-ui";
 - **titleColor?**, **subtitleColor?**: `string`
 - **buttonColor?**: `string`
 - **className?**: `string`
+
+---
+
+## 20. Breadcrumb
+
+A navigation trail component showing the user's current location in the site hierarchy.
+
+**Import:**
+```ts
+import { Breadcrumb } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`BreadcrumbProps`):**
+- **items?**: `BreadcrumbItem[]`
+    - `BreadcrumbItem`: `{ label: string; href: string; isHome?: boolean; }`
+- **backgroundColor?**: `string` (default: `'#343843'`)
+- **textColor?**: `string` (default: `'#ffffff'`)
+- **separatorColor?**: `string` (default: `'#ffffff'`)
+
+---
+
+## 21. ContentCard
+
+A clear and flexible card component for displaying content with various layouts. Used in carousels and grids.
+
+**Import:**
+```ts
+import { ContentCard } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`ContentCardProps`):**
+- **variant?**: `'Standard' | 'Blog' | 'Vertical' | 'Icon'` (default: `'Standard'`)
+- **title**: `string`
+- **description**: `string`
+- **imageSrc?**: `string`
+- **icon?**: `string | React.ReactNode` (For 'Icon' variant)
+- **date?**: `string`
+- **buttonText?**: `string`
+- **onButtonClick?**: `() => void`
+- **blockClass?**: `string`
+
+---
+
+## 22. Feature
+
+A feature section highlighting a key product or service with an image and text.
+
+**Import:**
+```ts
+import { Feature } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`FeatureProps`):**
+- **title**: `string`
+- **description**: `string`
+- **eyebrow?**: `string`
+- **buttonText?**: `string`
+- **onButtonClick?**: `() => void`
+- **imageSrc?**: `string`
+- **blockClass?**: `string`
+
+---
+
+## 23. FeatureBrands
+
+A section displaying a list of brand logos with a featured image and text. Includes a slider for logos.
+
+**Import:**
+```ts
+import { FeatureBrands } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`FeatureBrandsProps`):**
+- **title**: `string`
+- **description**: `string`
+- **eyebrow?**: `string`
+- **brandLogos?**: `{ src: string; alt: string }[]`
+- **imageSrc?**: `string`
+- **buttonText?**: `string`
+- **onButtonClick?**: `() => void`
+- **autoplaySpeed?**: `number` (default: `3000`)
+- **blockClass?**: `string`
+
+---
+
+## 24. FilterNavigator
+
+A comprehensive filtering component supporting checkboxes, range sliders, and toggle switches.
+
+**Import:**
+```ts
+import { FilterNavigator } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`FilterNavigatorProps`):**
+- **title?**: `string` (default: "Filters")
+- **sections**: `FilterSection[]`
+    - `FilterSection`: `{ id: string; title: string; type: 'checkbox'|'range'|'toggle'; options?: FilterOption[]; min?: number; max?: number; rangeValue?: [number, number]; }`
+    - `FilterOption`: `{ label: string; value: string; count?: number; checked?: boolean; }`
+- **onFilterChange**: `(sectionId: string, value: any) => void`
+- **onClearAll**: `() => void`
+- **className?**: `string`
+- **accentColor?**: `string`
+- **backgroundColor?**: `string`
+
+---
+
+## 25. HomeNumbers
+
+A section to display key statistics or numbers (e.g., "100+ Stores").
+
+**Import:**
+```ts
+import { HomeNumbers } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`HomeNumbersProps`):**
+- **items**: `HomeNumbersItem[]`
+    - `HomeNumbersItem`: `{ title: string; description: string; }`
+
+---
+
+## 26. HomeTitle
+
+A simple, centered (or left-aligned) title section for the homepage.
+
+**Import:**
+```ts
+import { HomeTitle } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`HomeTitleProps`):**
+- **title**: `string`
+- **eyebrow?**: `string`
+- **description?**: `string`
+- **blockClass?**: `string`
+
+---
+
+## 27. IconCardCarousel
+
+A carousel specifically designed for `ContentCard` components with the `Icon` variant.
+
+**Import:**
+```ts
+import { IconCardCarousel } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`IconCardCarouselProps`):**
+- **cards**: `ContentCardProps[]`
+- **autoPlayInterval?**: `number` (default: `3000`)
+- **blockClass?**: `string`
+
+---
+
+## 28. MainFooter
+
+A comprehensive footer component with multiple menu columns, social links, and bottom actions.
+
+**Import:**
+```ts
+import { MainFooter } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`MainFooterProps`):**
+- **logoSrc?**, **logoAlt?**, **logoHref?**: `string`
+- **description?**: `string`
+- **menus?**: `FooterMenu[]` (`{ title: string; items: { label?: string; href: string; imageSrc?: string; imageAlt?: string }[] }`)
+- **socialLinks?**: `{ icon: React.ReactNode; href: string }[]`
+- **actions?**: `FooterAction[]` (`{ label: string; href: string; variant?: 'primary' | 'outline' }`)
+- **copyrightText?**: `string`
+- **legalLinks?**: `{ label: string; href: string }[]`
+- **backgroundColor?**, **textColor?**, **headingColor?**, **borderColor?**, **iconBackgroundColor?**, **iconColor?**: `string`
+- **primaryButtonBackgroundColor?**, **primaryButtonTextColor?**: `string`
+
+---
+
+## 29. MainHeader
+
+The primary site header containing the logo, main navigation, and action icons (Search, Sign In, Cart).
+
+**Import:**
+```ts
+import { MainHeader } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`MainHeaderProps`):**
+- **logoIcon?**: `React.ReactNode | string`
+- **logoBrandName?**: `string`
+- **logoHref?**: `string`
+- **navItems?**: `{ label: string; href?: string; hasDropdown?: boolean }[]`
+- **actions?**: `{ label: string; icon: React.ReactNode; href: string }[]`
+- **backgroundColor?**, **textColor?**, **borderColor?**, **navColor?**, **logoColor?**: `string`
+
+---
+
+## 30. MainNav
+
+A wrapper component that combines `TopBar`, `MainHeader`, `SubHeader`, and `Breadcrumb` into a full navigation stack.
+
+**Import:**
+```ts
+import { MainNav } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`MainNavProps`):**
+- **topBarProps?**: `TopBarProps`
+- **mainHeaderProps?**: `MainHeaderProps`
+- **subHeaderProps?**: `SubHeaderProps`
+- **breadcrumbProps?**: `BreadcrumbProps`
+
+---
+
+## 31. MenuList
+
+A helper component to render a list of links, used in footers and sidebars.
+
+**Import:**
+```ts
+import { MenuList } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`MenuListProps`):**
+- **title?**: `string`
+- **items**: `MenuListItem[]` (`{ label?: string; href: string; imageSrc?: string; imageAlt?: string; className?: string }`)
+- **orientation?**: `'vertical' | 'horizontal'`
+- **titleClassName?**, **listClassName?**, **itemClassName?**: `string`
+
+---
+
+## 32. StandardCardCarousel
+
+A carousel for display `ContentCard` components in `Standard` variant.
+
+**Import:**
+```ts
+import { StandardCardCarousel } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`StandardCardCarouselProps`):**
+- **cards**: `ContentCardProps[]`
+- **autoPlayInterval?**: `number` (default: `5000`)
+- **blockClass?**: `string`
+
+---
+
+## 33. SubHeader
+
+A secondary header usually placed below the main header, containing additional navigation or actions.
+
+**Import:**
+```ts
+import { SubHeader } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`SubHeaderProps`):**
+- **logoSrc?**, **logoAlt?**, **logoHref?**: `string`
+- **menuItems?**: `{ label: string; href?: string; hasDropdown?: boolean }[]`
+- **secondaryActionLabel?**, **secondaryActionHref?**: `string`
+- **primaryActionLabel?**: `string`
+- **onPrimaryActionClick?**: `() => void`
+- **backgroundColor?**, **textColor?**, **iconColor?**: `string`
+
+---
+
+## 34. Testimonial
+
+A component to display customer testimonials with quote, author info, and image.
+
+**Import:**
+```ts
+import { Testimonial } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`TestimonialProps`):**
+- **heading?**: `string`
+- **quote?**: `string`
+- **authorName?**: `string`
+- **authorTitle?**: `string`
+- **imageSrc?**: `string`
+- **blockClass?**: `string`
+
+---
+
+## 35. TopBar
+
+A slim bar at the very top of the page, often used for utility links, language selection, or branding.
+
+**Import:**
+```ts
+import { TopBar } from "@clouda-inc/clouda-vtex-ui";
+```
+
+**Props (`TopBarProps`):**
+- **brandLogos?**: `{ src: string; alt: string }[]`
+- **utilityLinkLabel?**: `string`
+- **utilityLinkUrl?**: `string`
+- **locale?**: `string`
+- **backgroundColor?**: `string`
+- **textColor?**: `string`
+
