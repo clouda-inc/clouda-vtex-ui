@@ -12,15 +12,18 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
+const isStorybook = process.env.STORYBOOK === 'true';
+
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [
     react(),
     tsconfigPaths(),
-    dts({
+    !isStorybook &&
+      dts({
       rollupTypes: true,
       tsconfigPath: path.resolve(__dirname, 'tsconfig.app.json'),
-    })],
+    })].filter(Boolean),
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/main.ts'),
